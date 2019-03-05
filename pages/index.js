@@ -1,6 +1,12 @@
+import React from 'react';
 
+class Index extends React.Component {
 
-
-const Index = () => <div> Welcome Page! </div>
+    render() {
+        return (
+            <h1>I am Index Page from Class Component</h1>
+        )
+    }
+}
 
 export default Index;
