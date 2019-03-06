@@ -1,14 +1,13 @@
 import React from 'react';
-import Header from '../components/shared/Header';
+import BaseLayout from '../components/layouts/BaseLayout';
 
 class Resume extends React.Component {
 
     render() {
         return (
-            <div>
+            <BaseLayout>
                 <h1>I am Resume Page </h1>
-                <Header />
-            </div>
+            </BaseLayout>
         )
     }
 }

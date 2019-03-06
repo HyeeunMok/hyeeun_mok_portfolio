@@ -1,5 +1,4 @@
 import React from 'react';
-import Header from '../components/shared/Header';
 import BaseLayout from '../components/layouts/BaseLayout';
 
 class Index extends React.Component {
