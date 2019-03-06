@@ -1,10 +1,14 @@
 import React from 'react';
+import Header from '../components/shared/Header';
 
 class Projects extends React.Component {
 
     render() {
         return (
-            <h1>I am Projects Page </h1>
+            <div>
+                <h1>I am Projects Page </h1>
+                <Header />
+            </div>
         )
     }
 }

@@ -1,4 +1,5 @@
 import React from 'react';
+import Header from '../components/shared/Header';
 
 class Index extends React.Component {
 
@@ -6,11 +7,9 @@ class Index extends React.Component {
         return (
             <div>
                 <h1>I am Index Page from Class Component</h1>
-                <a href="/">HOME</a>
-                <a href="/about">ABOUT</a>
-                <a href="/projects">PROJECTS</a>
-                <a href="/blogs">BLOG</a>
-                <a href="/resume">Resume</a> 
+                <Header title ={'I am a header component'}>
+                    <h1>I am header subtitle</h1>
+                </Header>
             </div>
         )
     }
