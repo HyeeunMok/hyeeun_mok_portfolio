@@ -15,32 +15,30 @@ class Index extends SuperComponent {
     }
 
     componentDidMount() {
-        console.log('constructor');
+        console.log('componentDidMount');
     }
 
     componentDidUpdate() {
-        console.log('constructor');
+        console.log('componentDidUpdate');
     }
 
     componentWillUnmount() {
-        console.log('constructor');
+        console.log('componentWillUnmount');
     }
 
-    updateTitle() {
-        debugger;
+    updateTitle = () => {
         this.setState({title: 'I am Updated Index page'});
     }
 
     render() {
-        debugger;
         const { title } = this.state;
         // const title = this.state.title;
 
         return (
             <BaseLayout>
                 <h1 className='fromPage'>I am Index Page from Class Component</h1>
-                <h2> { title} </h2>
-                <button onClick={ () => this.updateTitle() }> Change Title </button>
+                <h2> { title } </h2>
+                <button onClick={this.updateTitle}> Change Title </button>
             </BaseLayout>
         )
     }
