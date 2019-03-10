@@ -4,6 +4,12 @@ import SuperComponent from '../components/SuperComponent';
 
 class Index extends SuperComponent {
 
+    static getInitialProps() {
+        console.log('I am get getinitialProps');
+
+        return {initialData: [1,2,3,4]};
+    }
+
     constructor(props) {
         super(props);
         
@@ -32,6 +38,7 @@ class Index extends SuperComponent {
 
     render() {
         const { title } = this.state;
+        const initialData = this.props.initialData;
         // const title = this.state.title;
 
         return (
