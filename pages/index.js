@@ -1,5 +1,7 @@
 import React from 'react';
 import BaseLayout from '../components/layouts/BaseLayout';
+import axios from 'axios';
+
 import SuperComponent from '../components/SuperComponent';
 
 class Index extends SuperComponent {
