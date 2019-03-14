@@ -1,5 +1,7 @@
 import React from 'react';
 import BaseLayout from '../components/layouts/BaseLayout';
+import Link from 'next/link';
+
 import axios from 'axios';
 
 class Projects extends React.Component {
