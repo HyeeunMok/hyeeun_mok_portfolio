@@ -22,7 +22,7 @@ class Projects extends React.Component {
         return posts.map((post) => {
             return (
                 <li>
-                    <Link href={`/project?title=${post.title}`}>
+                    <Link as={`/project/${post.id}`} href={`/project?title=${post.title}`}>
                         <a style={{'fontSize': '20px'}}> {post.title} </a>
                     </Link>
                 </li>
