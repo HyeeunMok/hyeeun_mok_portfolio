@@ -21,7 +21,11 @@ class Projects extends React.Component {
     renderPosts(posts) {
         return posts.map((post) => {
             return (
-                <li key={post.title}> {post.title} </li>
+                <li>
+                    <Link href={`/project?title=${post.title}`}>
+                        <a style={{'fontSize': '20px'}}> {post.title} </a>
+                    </Link>
+                </li>
             )
         })
     }
