@@ -12,8 +12,8 @@ app
 
     server.get('/project/:id', (req, res) => {
         const actualPage = '/project'
-        const queryParams = { id: req.params.id }
-        app.render(req, res, actualPage, queryParams)
+        const queryParams = { id: req.params.id };
+        app.render(req, res, actualPage, queryParams);
       })
 
     server.get('*', (req, res) => {
