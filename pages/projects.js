@@ -19,9 +19,9 @@ class Projects extends React.Component {
     }
 
     renderPosts(posts) {
-        return posts.map((post) => {
+        return posts.map((post, index) => {
             return (
-                <li>
+                <li key={index}>
                     <Link route={`/project/${post.id}`}>
                         <a style={{'fontSize': '20px'}}> {post.title} </a>
                     </Link>
