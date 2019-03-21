@@ -2,7 +2,6 @@ import React from 'react';
 import BaseLayout from '../components/layouts/BaseLayout';
 
 import { Button, Container } from 'reactstrap';
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 class Index extends React.Component {
 
@@ -11,7 +10,6 @@ class Index extends React.Component {
         return (
             <BaseLayout>
                 <Container className="container">
-                    <Button color="danger">Danger!</Button>
                 </Container>
             </BaseLayout>
         )
