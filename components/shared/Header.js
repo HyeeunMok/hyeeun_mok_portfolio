@@ -1,46 +1,65 @@
 import React from 'react';
 import Link from 'next/link';
+import {
+  Collapse,
+  Navbar,
+  NavbarToggler,
+  NavbarBrand,
+  Nav,
+  NavItem,
+  NavLink } from 'reactstrap';
 
-class Header extends React.Component {
-    render() {
-        
-        return (
-            <React.Fragment>
-                <Link href="/">
-                    <a style={{'fontSize': '20px'}}> HOME </a>
-                </Link>
-
-                <Link href="/about">
-                    <a> ABOUT </a>
-                </Link>
-
-                <Link href="/projects">
-                    <a> PROJECTS </a>
-                </Link>
-
-                <Link href="/blogs">
-                    <a> BLOG </a>
-                </Link>
-
-                <Link href="/resume">
-                    <a> RESUME </a>
-                </Link>
-                <style jsx>
-                {
-                    `
-                    a {
-                        font-size: 20px;
-                    };
-                    .customClass {
-                        color: red;
-                    }
-                    `
-                }                
-                </style>
-            </React.Fragment>
-
-        )
-    }
+const BsNavLink = (props) => {
+    const { route, title } = props;
+    return (
+        <Link href={route}>
+            <a className="nav-link port-navbar-link"> {title} </a>
+        </Link>
+    )
 }
 
-export default Header;
+
+export default class Example extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.toggle = this.toggle.bind(this);
+    this.state = {
+      isOpen: false
+    };
+  }
+  toggle() {
+    this.setState({
+      isOpen: !this.state.isOpen
+    });
+  }
+  render() {
+    return (
+      <div>
+        <Navbar className="port-navbar port-default absolute" color="transparent" dark expand="md">
+          <NavbarBrand className="port-navbar-brand" href="/">Hyeeun Mok</NavbarBrand>
+          <NavbarToggler onClick={this.toggle} />
+          <Collapse isOpen={this.state.isOpen} navbar>
+            <Nav className="ml-auto" navbar>
+              <NavItem className="port-navbar-item">
+                  <BsNavLink route="/" title="Home"/>
+              </NavItem>
+              <NavItem className="port-navbar-item">
+                  <BsNavLink route="/about" title="About"/>
+              </NavItem>
+              <NavItem className="port-navbar-item">
+                  <BsNavLink route="/projects" title="Project"/>
+              </NavItem>
+              <NavItem className="port-navbar-item">
+                  <BsNavLink route="/blogs" title="Blog"/>
+              </NavItem>
+              <NavItem className="port-navbar-item">
+                  <BsNavLink route="/resume" title="Resume"/>
+              </NavItem>
+            </Nav>
+          </Collapse>
+        </Navbar>
+      </div>
+    );
+  }
+}
