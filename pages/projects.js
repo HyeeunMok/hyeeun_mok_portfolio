@@ -34,7 +34,7 @@ class Projects extends React.Component {
     render() {
         const { posts } = this.props;
         return (
-            <BaseLayout>
+            <BaseLayout {...this.props.auth}>
                 <BasePage>
                     <h1>I am Projects Page </h1>
                     <ul>
