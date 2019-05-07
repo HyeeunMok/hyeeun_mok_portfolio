@@ -1,5 +1,6 @@
 import auth0 from 'auth0-js';
 import Cookies from 'js-cookie';
+import jwt from 'jsonwebtoken';
 
 class Auth0 {
 
@@ -15,7 +16,6 @@ constructor() {
     this.login = this.login.bind(this);
     this.logout = this.logout.bind(this);
     this.handleAuthentication = this.handleAuthentication.bind(this);
-    this.isAuthenticated = this.isAuthenticated.bind(this);
 
 }
 
@@ -35,7 +35,6 @@ handleAuthentication() {
 }
 
 setSession(authResult) {
-    debugger;
   // Set the time that the Access Token will expire at
     const expiresAt = (authResult.expiresIn * 1000) + new Date().getTime();
 
@@ -62,26 +61,41 @@ login() {
    this.auth0.authorize();
  }
 
- isAuthenticated() {
-   const expiresAt = Cookies.getJSON('expiresAt');
-   return new Date().getTime() < expiresAt;
- }
+verifyToken(token) {
+    if (token) {
+        const decodedToken = jwt.decode(token);
+        const expiresAt = decodedToken.exp * 1000;
+        
+        return (decodedToken && new Date().getTime() < expiresAt) ? decodedToken : undefined;
+    }
 
- clientAuth() {
-     return this.isAuthenticated();
+    return undefined;
+}
+
+
+clientAuth() {
+    debugger;
+     const token = Cookies.getJSON('jwt');
+     const verifiedToken = this.verifyToken(token);
+
+     return token;
+     // Phil's one is return token; but looks wrong should be "verifiedToken"?
  }
 
 serverAuth(req) {
     if (req.headers.cookie) {
 
-        const expiresAtCookie = req.headers.cookie.split(';').find(c => c.trim().startsWith('expiresAt='));
+        const tokenCookie = req.headers.cookie.split(';').find(c => c.trim().startsWith('jwt='));
 
-        if (!expiresAtCookie) { return undefined};
+        if (!tokenCookie) { return undefined};
 
-        const expiresAt = expiresAtCookie.split('=')[1];
+        const token = tokenCookie.split('=')[1];
+        const verifiedToken = this.verifyToken(token);
 
-        return new Date().getTime() < expiresAt;
+        return verifiedToken;
         }
+
+        return undefined;
     }
 
 }
