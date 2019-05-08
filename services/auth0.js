@@ -2,7 +2,6 @@ import auth0 from 'auth0-js';
 import Cookies from 'js-cookie';
 import jwt from 'jsonwebtoken';
 import axios from 'axios';
-import { JwksClient } from 'jwks-rsa';
 
 class Auth0 {
 
