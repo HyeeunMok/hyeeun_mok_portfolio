@@ -9,7 +9,7 @@ const handle = routes.getRequestHandler(app);
 const secretData = [
     {
         title: 'SecretData 1',
-        description: 'Plans how to ulild spaceship'
+        description: 'Plans how to bulild spaceship'
     },
     {
         title: 'SecretData 2',

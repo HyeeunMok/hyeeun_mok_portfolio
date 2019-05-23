@@ -4,6 +4,8 @@ import BasePage from '../components/BasePage';
 
 import withAuth from '../components/hoc/withAuth';
 
+import axios from 'axios';
+
 class Secret extends React.Component {
 
     static getInitialProps() {
@@ -11,6 +13,42 @@ class Secret extends React.Component {
 
         return { superSecretValue };
     }
+
+// constructor(props) {
+//     super();
+
+//     this.state = {
+//         secretData: []
+//     }
+// }
+
+state = {
+    secretData: []
+}
+async componentDidMount() {
+    const res = await axios.get('/api/v1/secret')
+    const secretData = res.data;
+    this.setState({
+        secretData
+    });
+}
+
+displaySecretData() {
+    const { secretData } = this.state;
+
+    if ( secretData && secretData.length > 0) {
+        return secretData.map((data, index) => {
+            return (
+                <div key = {index}>
+                    <p> { data.title } </p>
+                    <p> { data.description} </p>
+                </div>
+            )
+        })
+    }
+
+    return null;
+}
 
     render() {
         const { superSecretValue } =  this.props;
@@ -21,6 +59,7 @@ class Secret extends React.Component {
                     <h1>I am Secret Page </h1>
                     <p> Secret Content Here </p>
                     <h2> { superSecretValue } </h2>
+                    { this.displaySecretData() }
                 </BasePage>
             </BaseLayout>            
         )         
