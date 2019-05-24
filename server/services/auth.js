@@ -1,13 +1,16 @@
-
+const jwt = require('express-jwt');
+const jwksRsa = require('jwks-rsa');
 
 
 // MIDDLEWARE
-exports.checkJWT = function(req, res, next) {
-    const isValidToken = false;
-
-    if (isValidToken) {
-        next();
-    } else {
-        return res.status(401).send({title: 'Not Authorized', detail: 'Please login in order to get a data'});
-    }
-}
+exports.checkJWT = jwt({ 
+    secret: jwksRsa.expressJwtSecret({
+        cache: true,
+        rateLimit: true,
+        jwksRequestsPerMinute: 15,
+        jwksUri: 'https://dev-2ewxg5mz.auth0.com/.well-known/jwks.json'
+      }),
+    audience: 'B3EPbm6jQQzDFIN0nBklXCKxm82UkEhs',
+    issuer: 'https://dev-2ewxg5mz.auth0.com/',
+    algorithms: ['RS256']
+})

@@ -26,12 +26,18 @@ app
     const server = express();
 
     server.get('/api/v1/secret', authService.checkJWT, (req, res) => {
-        return res.json(secretData);
+      return res.json(secretData);
     })
 
     server.get('*', (req, res) => {
       return handle(req, res)
     })
+
+    server.use(function (err, req, res, next) {
+      if (err.name === 'UnauthorizedError') {
+        res.status(401).send({title: 'Unauthorized', detail: 'Unauthorized Access' });
+      }
+    });
 
     server.use(handle).listen(3000, err => {
       if (err) throw err
