@@ -43,7 +43,7 @@
     "moment": "^2.22.2",
     "mongoose": "^5.3.12",
     "net": "^1.0.2",
-    "next": "^7.0.2",
+    "next": "^13.1.1",
     "next-routes": "^1.4.2",
     "node-sass": "^4.11.0",
     "optimize-css-assets-webpack-plugin": "^5.0.1",
